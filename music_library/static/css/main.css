@@ -6,16 +6,30 @@
     --background-color: #fff;
     --accent-colour: #2C74B3;
     --accent-colour-2: #3bb54a;
-    --tag-colour: #e5e5e5;
+    --tag-colour: var(--accent-colour-2);
 
 
     --border: 3px solid #222222;
 }
 
+:root.dark-mode {
+    --text-light: #222222;
+    --text-dark: #fbf2f2;
+    --text-muted: #595959;
+
+    --background-color: #222222;
+    --accent-colour-2: #2C74B3;
+    --accent-colour: #3bb54a;
+    --tag-colour: var(--accent-colour-2);
+
+
+    --border: 3px solid #fbf2f2;
+}
+
 
 .button {
     --background-color: #e2e8f0;
-    --background-color-hover: #bdd1eb;
+    --background-color-hover: var(--accent-colour);
 }
 
 
@@ -26,7 +40,11 @@
 
 .form__field,
 .nav__link {
-    --border: 3px solid #2C74B3;
+    --border: 3px solid var(--accent-colour);
+}
+
+.icon {
+    --border: 3px solid var(--accent-colour);
 }
 
 html {
@@ -47,15 +65,28 @@ html {
 }
 
 body {
+    display: flex;
+    flex-direction: column;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: var(--text-dark);
     line-height: 1.45;
     background-color: var(--background-color);
 }
 
+.main {
+    flex-grow: 1;
+    padding: 3rem 1.5rem 2rem 1.5rem;
+}
+
 .header {
     padding: 0 2rem;
     border-bottom: var(--border);
+}
+
+@media screen and (min-width: 30em) {
+    .main {
+        padding-top: 5rem;
+    }
 }
 
 .header__logo {
@@ -111,9 +142,15 @@ body {
     margin-right: 1rem;
 }
 
-.nav__link:hover {
-    background: #2C74B3;
+.nav__link:hover:not(.icon) {
+    background: var(--accent-colour);
     color: var(--text-light);
+}
+
+.icon:hover {
+    margin-bottom: -3px;
+    border-bottom: var(--border);
+    color: var(--accent-colour);
 }
 
 .nav__item {
@@ -125,6 +162,12 @@ body {
 .nav__icon {
     width: 1em;
     height: 1em;
+}
+
+.footer {
+    padding: 1rem 0;
+    color: var(--text-muted);
+    text-align: center;
 }
 
 .button {
@@ -152,3 +195,4 @@ body {
 .link:hover {
     text-decoration: underline;
 }
+
