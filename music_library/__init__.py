@@ -13,7 +13,7 @@ def create_app():
     secret_key = os.getenv("SECRET_KEY")
     app.config["MONGO_URI"] = mongo_address
     app.config["SECRET_KEY"] = secret_key
-    app.db = MongoClient(app.config["MONGO_URI"]).get_default_database()
+    app.db = MongoClient(app.config["MONGO_URI"]).Songs
 
     app.register_blueprint(pages)
     return app
