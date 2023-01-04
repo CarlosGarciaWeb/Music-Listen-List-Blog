@@ -50,3 +50,27 @@
     padding: 0.5rem 1rem;
     border-bottom: var(--border);
 }
+
+.table__song--Title {
+    font-weight: 600;
+}
+
+.table__song--Artist {
+    font-weight: 600;
+}
+
+.table__link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.table__link:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--accent-colour);
+}
+
+.table__empty {
+    display: block;
+    text-align: center;
+    font-size: 1.2rem;
+}
