@@ -1,0 +1,75 @@
+{% from "macros/svgs.html" import star %}
+
+{% extends "layout.html" %}
+
+{% block head_content %}
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/song_details.css') }}">
+
+{% endblock head_content %}
+
+
+{% block main_content %}
+
+<div class="container">
+    <header class="song__header">
+        <div class="header__row">
+            <div class="song__name">
+                <h1>{{ song.name }}</h1>
+                <div class="song__rating">
+                    {{ song.rating }}
+                </div>
+            </div>
+            <div class="song__heard">
+                {% if song.date %}
+                    <p>
+                        Last heard: <a href="#" class="heard__link">
+                            <time datetime="{{song.date}}">{{song.date.strftime("%d %b %Y")}}</time>
+                        </a>
+                    </p>
+                {% else %}
+                    <p>
+                        <a href="#" class="heard__link">Not heard yet.</a>
+                    </p>
+                {% endif %}
+                <a href="#" class="song__edit">Edit</a>
+            </div>
+        </div>
+        <div class="header__row">
+            <ul class="song__details">
+                <li class="song__detail">
+                    {{ song.author}}
+                </li>
+                <li class="song__detail">
+                    {{ song.genre}}
+                </li>
+                <li class="song__detail">
+                    {{ song.album}}
+                </li>
+                {% for member in song.members %}
+                    <li class="song__tag">
+                        {{ member }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </header>
+    {% if song.youtube_link %}
+
+        <iframe 
+            src="{{ song.youtube_link }}" 
+            class="song__video"  
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
+            allowfullscreen>
+        </iframe>
+    {% endif %}
+
+    {% if song.description %}
+        <p class="song__description">{{ song.description }}</p>
+    {% else %}
+        <p class="song__description">No description yet.<a class="link" href="#"> Would you like to provide one?</a></p>
+    {% endif %}
+</div>
+
+{% endblock main_content %}
