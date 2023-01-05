@@ -10,6 +10,8 @@ class Song:
     genre: str
     album: str
     rating: int = 0
+    year: int = 0
+    members: list[str] = field(default_factory=list)
     date: datetime = None
     description: str = None
     youtube_link: str = None

@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, session, redirect, request, current_app, url_for
+from flask import Blueprint, render_template, session, redirect, request, current_app, url_for, abort
 from music_library.forms import MusicForm
 from music_library.models import Song
 import uuid
@@ -39,6 +39,16 @@ def add_song():
         return redirect(url_for(".index"))
 
     return render_template("new_song.html", title="Music Review List - Add Song", form=form)
+
+
+@pages.get("/song/<string:_id>")
+def song(_id: str):
+    song_data = current_app.db.songList.find_one({"_id": _id})
+    if not song_data:
+        abort(404)
+    song = Song(**song_data)
+    return render_template("song_details.html", song=song )
+
 
 @pages.get("/toggle-theme")
 def toggle():
